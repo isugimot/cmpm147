@@ -29,14 +29,14 @@ function main() {
     ingredient2: ["cool whip", "flours", "peeled and cubed potatoes","eggs", "ruler", "headache", "chocolate"],
     ingredient3: ["white sugar", "brown sugar", "chopped onion", "calculator", "banana", "water", "nothing", "antimatter"],
     ingredient4: ["cream cheese", "butter", "salt", "paper", "banana slug", "boredom", "milk"],
-    unit1: ["c", "", "lb", "g", "kg", " piles of", "t", "mg", "cm", "l", "m", " something"],
-    unit2: ["tub", "pinch", "", "cm", "m", "km", "g", "c", "lb"],
-    unit3: ["c", "g", "kg", "", " teaspoon", "mg", "t", " grasp"],
-    unit4: ["oz", "g", " teaspoon", " sheet of", "", "kg"],
-    numbers1: ["1", "2", "1/2", "3", "No", "100","50", "1/4", "10", "10,000", "", "6"],
-    numbers2: ["1", "2", "3", "100", "No", "1000", "40", "1/5", "1/3"],
-    numbers3: ["1", "50", "1/2", "No", "2", "1/10", "A", "banana", "1/3", "1/4", "3", "4", "5"],
-    numbers4: ["18", "20", "1", "1/4", "100", "∞", "No"],
+    unit1: ["c ", "", "lb ", "g ", "kg ", "piles of ", "t ", "mg ", "cm ", "l ", "m ", "something "],
+    unit2: ["tub ", "pinch ", "", "cm ", "m ", "km ", "g ", "c ", "lb "],
+    unit3: ["c ", "g ", "kg ", "", "teaspoon ", "mg ", "t ", "grasp "],
+    unit4: ["oz ", "g ", "teaspoon ", "sheet of ", "", "kg "],
+    numbers1: ["1 ", "2 ", "1/2 ", "3 ", "No ", "100 ","50 ", "1/4 ", "10 ", "10,000 ", "", "6 "],
+    numbers2: ["1 ", "2 ", "3 ", "100 ", "No ", "1000 ", "40 ", "1/5 ", "1/3 "],
+    numbers3: ["1 ", "50 ", "1/2 ", "No ", "2 ", "1/10 ", "A ", "banana ", "1/3 ", "1/4 ", "3 ", "4 ", "5 "],
+    numbers4: ["18 ", "20 ", "1 ", "1/4 ", "100 ", "∞ ", "No "],
     Action1: ["Mix together", "Use", "Cook", "Don't use"],
     Action2: ["place", "start calculating", "lay"],
     Item1: ["mixture into", "pi starting with", "cooked filling into", "nothingness into"],
@@ -45,12 +45,12 @@ function main() {
   };
   
   const template = `Ingredients:
-  1)$numbers1$unit1 $ingredient1
-  2)$numbers2$unit2 $ingredient2
-  3)$numbers3$unit3 $ingredient3
-  4)$numbers4$unit4 $ingredient4
+  1)$numbers1$unit1$ingredient1 \n
+  2)$numbers2$unit2$ingredient2 \n
+  3)$numbers3$unit3$ingredient3 \n
+  4)$numbers4$unit4$ingredient4 \n\n
   
-  $Action1 the above ingredients and $Action2 the $Item1 $Crust.
+  $Action1 the above ingredients and $Action2 the $Item1 $Crust.\n
   Place the $Crust in $Item2, and it is finished once you get $Item3.
   
   `;
