@@ -44,13 +44,13 @@ function main() {
     Item3: ["a golden crust", "a good smell", "a burning smell", "a grotesque something", "nothing", "the number 3.14159265359..."],
   };
   
-  const template = `Ingredients:\n
-  1)$numbers1$unit1$ingredient1 \n
-  2)$numbers2$unit2$ingredient2 \n
-  3)$numbers3$unit3$ingredient3 \n
-  4)$numbers4$unit4$ingredient4 \n\n
+  const template = `Ingredients:
+  1)$numbers1$unit1$ingredient1
+  2)$numbers2$unit2$ingredient2
+  3)$numbers3$unit3$ingredient3
+  4)$numbers4$unit4$ingredient4 
   
-  $Action1 the above ingredients and $Action2 the $Item1 $Crust.\n
+  $Action1 the above ingredients and $Action2 the $Item1 $Crust.
   Place the $Crust in $Item2, and it is finished once you get $Item3.
   
   `;
