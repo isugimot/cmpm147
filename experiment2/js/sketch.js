@@ -7,8 +7,11 @@
 
 // Constants - User-servicable parts
 // In a longer project I like to put these in a separate file
-const VALUE1 = 1;
-const VALUE2 = 2;
+let seed = 0;
+
+const skyColor = "#527b9c";
+const cloudColor = "#cccccc";
+const branchColor = "#6e5a36";
 
 // Globals
 let myInstance;
@@ -43,8 +46,6 @@ function setup() {
   // resize canvas is the page is resized
 
   // create an instance of the class
-  myInstance = new MyClass("VALUE1", "VALUE2");
-
   $(window).resize(function() {
     resizeScreen();
   });
@@ -53,24 +54,55 @@ function setup() {
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
+  randomSeed(seed);
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
+  background(255);
+  noStroke()
+  fill(skyColor);
+  rect(0, 0, width, height);
 
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+  stroke("#858290")
+  strokeWeight(5)
+  fill(cloudColor);
+  const clouds = 10 * random(2, 4);
+  const scrub = mouseX/width;
+  for (let i = 0; i < clouds; i++){
+    let z = random();
+    let w = random(0, width/2);
+    let h = random(10, 20);
+    let x = width * ((random() + (scrub/50 + millis() / 500000.0) / z) % 2);
+    let t = height/h;
+    let y = random(i * height/clouds, (i + 1) * height/clouds);
+    ellipse(x, y, width - w, t);
+  }
+  noStroke()
+  fill(219, 157, 0, 15);
+  rect(0, 0, width, height);
+  
+  fill(branchColor);
+  beginShape();
+  vertex(width, height);
+  const steps = 10;
+  for (let i = 0; i < steps; i++) {
+    let x = width - random(i * 10 , (i+1) * 10);
+    let y = height - random((i * height/2/steps), ((i * height/2/steps)));
+    vertex(x, y);
+    let check = i
+    if(check%3 == 0){ 
+      vertex(x + 50, y - 10);
+    }
+  }
+  for (let i = steps; i > 0; i--) {
+    let x = width - 50 - random(i * 5 , (i+1) * 5);
+    let y = height - random((i * height/2/steps), ((i * height/2/steps)));
+    vertex(x, y);
+    let check = i
+    if(check%3 == 0){ 
+      vertex(x - 50, y - 10);
+    }
+  }
+  vertex(width - 50, height);
+  endShape(CLOSE);
 }
 
 // mousePressed() function is called once after every time a mouse button is pressed
