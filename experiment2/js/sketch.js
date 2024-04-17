@@ -11,7 +11,7 @@ let seed = 0;
 
 const skyColor = "#527b9c";
 const cloudColor = "#cccccc";
-const branchColor = "#6e5a36";
+const branchColor = "#3d2e06";
 
 function resizeScreen() {
   centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
@@ -47,23 +47,21 @@ function draw() {
   rect(0, 0, width, height);
 
   stroke("#858290")
-  strokeWeight(5)
+  strokeWeight(2)
   fill(cloudColor);
-  const clouds = 10 * random(2, 4);
+  const clouds = 20 * random(6, 8);
   const scrub = mouseX/width;
   for (let i = 0; i < clouds; i++){
     let z = random();
-    let w = random(0, width/2);
+    let w = random(0, 3*width/4);
     let h = random(10, 20);
     let x = width * ((random() + (scrub/50 + millis() / 500000.0) / z) % 2);
     let t = height/h;
     let y = random(i * height/clouds, (i + 1) * height/clouds);
     ellipse(x, y, width - w, t);
   }
-  noStroke()
-  fill(219, 157, 0, 15);
-  rect(0, 0, width, height);
   
+  noStroke()
   fill(branchColor);
   beginShape();
   vertex(width, height);
@@ -73,8 +71,9 @@ function draw() {
     let y = height - random((i * height/2/steps), ((i * height/2/steps)));
     vertex(x, y);
     let check = i
-    if(check%3 == 0){ 
-      vertex(x + 50, y - 10);
+    let ran = random(1, 10);
+    if(check%3 == 0 && ran > 5){ 
+      vertex(x + width/5, y - height/10);
     }
   }
   for (let i = steps; i > 0; i--) {
@@ -82,10 +81,14 @@ function draw() {
     let y = height - random((i * height/2/steps), ((i * height/2/steps)));
     vertex(x, y);
     let check = i
-    if(check%3 == 0){ 
-      vertex(x - 50, y - 10);
+    let ran = random(1, 10);
+    if(check%3 == 0 && ran > 5){ 
+      vertex(x - width/5, y - height/10);
     }
   }
-  vertex(width - 50, height);
+  vertex(4*width/5, height);
   endShape(CLOSE);
+  
+  fill(219, 157, 0, 15);
+  rect(0, 0, width, height);
 }
