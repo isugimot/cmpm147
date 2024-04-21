@@ -72,7 +72,7 @@ function setup2() {
 }
 
 
-function draw() {
+function draw2() {
   randomSeed(seed);
   drawWorldGrid(currentGrid);
 }
