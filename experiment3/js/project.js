@@ -7,28 +7,79 @@
 // Constants - User-servicable parts
 // In a longer project I like to put these in a separate file
 
-// define a class
-class MyProjectClass {
-  // constructor function
-  constructor(param1, param2) {
-    // set properties using 'this' keyword
-    this.property1 = param1;
-    this.property2 = param2;
-  }
-  
-  // define a method
-  myMethod() {
-    // code to run when method is called
-  }
+/* exported preload, setup, draw, placeTile */
+
+/* global generateGrid drawGrid */
+
+let seed = 0;
+let tilesetImage;
+let currentGrid = [];
+let numRows, numCols;
+
+function preload() {
+  tilesetImage = loadImage(
+    "https://cdn.glitch.com/25101045-29e2-407a-894c-e0243cd8c7c6%2FtilesetP8.png?v=1611654020438"
+  );
 }
 
-function main() {
-  // create an instance of the class
-  let myInstance = new MyProjectClass("value1", "value2");
-
-  // call a method on the instance
-  myInstance.myMethod();
+function reseed() {
+  seed = (seed | 0) + 1109;
+  randomSeed(seed);
+  noiseSeed(seed);
+  select("#seedReport").html("seed " + seed);
+  regenerateGrid();
 }
 
-// let's get this party started - uncomment me
-//main();
+function regenerateGrid() {
+  select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
+  reparseGrid();
+}
+
+function reparseGrid() {
+  currentGrid = stringToGrid(select("#asciiBox").value());
+}
+
+function gridToString(grid) {
+  let rows = [];
+  for (let i = 0; i < grid.length; i++) {
+    rows.push(grid[i].join(""));
+  }
+  return rows.join("\n");
+}
+
+function stringToGrid(str) {
+  let grid = [];
+  let lines = str.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    let row = [];
+    let chars = lines[i].split("");
+    for (let j = 0; j < chars.length; j++) {
+      row.push(chars[j]);
+    }
+    grid.push(row);
+  }
+  return grid;
+}
+
+function setup() {
+  numCols = select("#asciiBox").attribute("rows") | 0;
+  numRows = select("#asciiBox").attribute("cols") | 0;
+
+  createCanvas(16 * numCols, 16 * numRows).parent("canvasContainer");
+  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+
+  select("#reseedButton").mousePressed(reseed);
+  select("#asciiBox").input(reparseGrid);
+
+  reseed();
+}
+
+
+function draw() {
+  randomSeed(seed);
+  drawGrid(currentGrid);
+}
+
+function placeTile(i, j, ti, tj) {
+  image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
+}
