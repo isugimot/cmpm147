@@ -16,15 +16,15 @@ function preload() {
   );
 }
 
+
+
 function reseed() {
   seed = (seed | 0) + 1109;
   randomSeed(seed);
   noiseSeed(seed);
-  select(r).html("seed " + seed);
+  select("seedReport").html("seed " + seed);
   regenerateGrid();
 }
-
-var myp5 = new p5(s, 'seedReport')
 
 function regenerateGrid() {
   select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
