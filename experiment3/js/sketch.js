@@ -6,9 +6,12 @@
 // Note that p5.js looks for a file called sketch.js
 
 let seed = 0;
+let seed2 = 0;
 let tilesetImage;
 let currentGrid = [];
+let currentGrid2 = [];
 let numRows, numCols;
+let numRows2, numCols2;
 
 function preload() {
   tilesetImage = loadImage(
@@ -16,7 +19,63 @@ function preload() {
   );
 }
 
+function reseed2() {
+  seed2 = (seed2 | 0) + 1109;
+  randomSeed(seed2);
+  noiseSeed(seed2);
+  select("#seedReport2").html("seed " + seed2);
+  regenerateGrid2();
+}
 
+function regenerateGrid2() {
+  select("#asciiBox2").value(gridToString2(generateWorldGrid(numCols2, numRows2)));
+  reparseGrid2();
+}
+
+function reparseGrid2() {
+  currentGrid2 = stringToGrid2(select("#asciiBox2").value());
+}
+
+function gridToString2(grid) {
+  let rows2 = [];
+  for (let i = 0; i < grid.length; i++) {
+    rows2.push(grid[i].join(""));
+  }
+  return rows2.join("\n");
+}
+
+function stringToGrid2(str) {
+  let grid2 = [];
+  let lines2 = str.split("\n");
+  for (let i = 0; i < lines2.length; i++) {
+    let row2 = [];
+    let chars2 = lines2[i].split("");
+    for (let j = 0; j < chars2.length; j++) {
+      row2.push(chars2[j]);
+    }
+    grid2.push(row2);
+  }
+  return grid2;
+}
+
+function setup2() {
+  numCols = select("#asciiBox2").attribute("rows2") | 0;
+  numRows = select("#asciiBox2").attribute("cols2") | 0;
+
+  createCanvas(16 * numCols, 16 * numRows).parent("canvas-container2");
+  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+
+  select("#reseedButton2").mousePressed(reseed);
+  select("#asciiBox2").input(reparseGrid);
+
+  reseed2();
+}
+
+
+function draw() {
+  randomSeed(seed);
+  drawWorldGrid(currentGrid);
+}
 
 function reseed() {
   seed = (seed | 0) + 1109;
