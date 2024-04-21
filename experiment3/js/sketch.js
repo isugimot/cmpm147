@@ -40,23 +40,6 @@ function setup() {
   resizeScreen();
 }
 
-function reseed() {
-  seed = (seed | 0) + 1109;
-  randomSeed(seed);
-  noiseSeed(seed);
-  select("#seedReport").html("seed " + seed);
-  regenerateGrid();
-}
-
-function regenerateGrid() {
-  select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
-  reparseGrid();
-}
-
-function reparseGrid() {
-  currentGrid = stringToGrid(select("#asciiBox").value());
-}
-
 function gridToString(grid) {
   let rows = [];
   for (let i = 0; i < grid.length; i++) {
@@ -245,4 +228,21 @@ function drawGrid(grid) {
       }
     }
   }
+}
+
+function reseed() {
+  seed = (seed | 0) + 1109;
+  randomSeed(seed);
+  noiseSeed(seed);
+  select("#seedReport").html("seed " + seed);
+  regenerateGrid();
+}
+
+function regenerateGrid() {
+  select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
+  reparseGrid();
+}
+
+function reparseGrid() {
+  currentGrid = stringToGrid(select("#asciiBox").value());
 }
