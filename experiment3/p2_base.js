@@ -9,7 +9,7 @@ let numRows, numCols;
 
 function preload() {
   tilesetImage = loadImage(
-    "/tilesetP8.png"
+    "tilesetP8.png"
   );
 }
 
