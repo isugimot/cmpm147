@@ -22,7 +22,7 @@ function reseed() {
   seed = (seed | 0) + 1109;
   randomSeed(seed);
   noiseSeed(seed);
-  select("seedReport").html("seed " + seed);
+  select("#seedReport").html("seed " + seed);
   regenerateGrid();
 }
 
