@@ -21,24 +21,48 @@ function resizeScreen() {
   centerVert = canvasContainer.height() / 2; // Adjusted for drawing logic
   console.log("Resizing...");
   resizeCanvas(canvasContainer.width(), canvasContainer.height());
-  // redrawCanvas(); // Redraw everything based on new size
+  redrawCanvas(); // Redraw everything based on new size
 }
 
-$("#reseedButton").click(function() {
+/*$("#reseedButton").click(function() {
   seed++;
-});
+});*/
 
 // setup() function is called once when the program starts
 function setup() {
   // place our canvas, making it fit our container
-  canvasContainer = $("#canvas-container");
+  /*canvasContainer = $("#canvas-container");
   let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-  canvas.parent("canvas-container");
+  canvas.parent("canvas-container");*/
+  numCols = select("#asciiBox").attribute("rows") | 0;
+  numRows = select("#asciiBox").attribute("cols") | 0;
+
+  createCanvas(16 * numCols, 16 * numRows).parent("canvasContainer");
+  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+
+  select("#reseedButton").mousePressed(reseed);
+  select("#asciiBox").input(reparseGrid);
+
+  reseed();
+
   $(window).resize(function() {
     resizeScreen();
   });
   resizeScreen();
 }
+
+/*function setup() {
+  numCols = select("#asciiBox").attribute("rows") | 0;
+  numRows = select("#asciiBox").attribute("cols") | 0;
+
+  createCanvas(16 * numCols, 16 * numRows).parent("canvasContainer");
+  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+
+  select("#reseedButton").mousePressed(reseed);
+  select("#asciiBox").input(reparseGrid);
+
+  reseed();
+}*/
 
 function gridToString(grid) {
   let rows = [];
@@ -61,20 +85,6 @@ function stringToGrid(str) {
   }
   return grid;
 }
-
-function setup() {
-  numCols = select("#asciiBox").attribute("rows") | 0;
-  numRows = select("#asciiBox").attribute("cols") | 0;
-
-  createCanvas(16 * numCols, 16 * numRows).parent("canvasContainer");
-  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
-
-  select("#reseedButton").mousePressed(reseed);
-  select("#asciiBox").input(reparseGrid);
-
-  reseed();
-}
-
 
 function draw() {
   randomSeed(seed);
