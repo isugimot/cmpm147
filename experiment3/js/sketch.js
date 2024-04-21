@@ -19,6 +19,7 @@ function preload() {
   );
 }
 
+//Overworld generator
 function reseed2() {
   seed2 = (seed2 | 0) + 1109;
   randomSeed(seed2);
@@ -59,10 +60,10 @@ function stringToGrid2(str) {
 }
 
 function setup2() {
-  numCols = select("#asciiBox2").attribute("rows2") | 0;
-  numRows = select("#asciiBox2").attribute("cols2") | 0;
+  numCols2 = select("#asciiBox2").attribute("rows2") | 0;
+  numRows2 = select("#asciiBox2").attribute("cols2") | 0;
 
-  createCanvas(16 * numCols, 16 * numRows).parent("canvas-container2");
+  createCanvas(16 * numCols2, 16 * numRows2).parent("canvas-container2");
   select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
 
   select("#reseedButton2").mousePressed(reseed);
@@ -73,10 +74,11 @@ function setup2() {
 
 
 function draw2() {
-  randomSeed(seed);
-  drawWorldGrid(currentGrid);
+  randomSeed(seed2);
+  drawWorldGrid(currentGrid2);
 }
 
+//Dungeon generator
 function reseed() {
   seed = (seed | 0) + 1109;
   randomSeed(seed);
