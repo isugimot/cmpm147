@@ -20,9 +20,11 @@ function reseed() {
   seed = (seed | 0) + 1109;
   randomSeed(seed);
   noiseSeed(seed);
-  select("#seedReport").html("seed " + seed);
+  select(r).html("seed " + seed);
   regenerateGrid();
 }
+
+var myp5 = new p5(s, 'seedReport')
 
 function regenerateGrid() {
   select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
@@ -259,6 +261,76 @@ function drawGrid(grid) {
         if(gridCode(grid, i, j, ".") == 0 && random() > 0.99){
           placeTile(i, j, 14, 9);
         }
+      }
+    }
+  }
+}
+
+function generateWorldGrid(numCols, numRows) {
+  //The grid with the different biomes and items
+  let grid = [];
+  for (let i = 0; i < numRows; i++) {
+    let row = [];
+    for (let j = 0; j < numCols; j++) {
+      if(noise(i/10, j/10) > 0.5){
+        row.push("-");
+      }
+      else if(noise(i/10, j/10) < 0.3){
+        row.push("W");
+      }
+      else{
+        row.push("_");
+      }
+    }
+    grid.push(row);
+  }
+  return grid;
+}
+
+//Drawing grids.
+function drawWorldGrid(grid) {
+  background(128);
+  for(let i = 0; i < grid.length; i++) {
+    for(let j = 0; j < grid[i].length; j++) {
+      //Drawing the water, andl also animating it using % operators and millis().
+      if(grid[i][j] == 'W'){
+        placeTile(i, j, 0, 13);
+        
+        placeTile(i, j, 0 + (millis()% (((i * j) % 17) * 5000) < (((i * j) % 5) + 5) * 50 ? 3 : 0), 13);
+      }
+      //Drawing the low lands
+      if(grid[i][j] == '-'){
+        placeTile(i, j, floor(random(0, 4)), 1);
+      }
+      else{
+        drawContext(grid, i, j, "-", 0, 6);
+      }
+      //Drawing the high lands with the houses and towers.
+      //Also drawing the trees in the low lands
+      //Drawing ground
+      if (grid[i][j] == '_') {
+        let ti = floor(random(4))
+        let tj = 0
+        placeTile(i, j, ti, tj);
+        //Drawing the houses
+        if(gridCode(grid, i, j, "_") == 15 && random() > 0.9){
+          placeTile(i, j, 26, 0);
+        }
+      }
+      else{
+        //Drawing the edges
+        drawContext(grid, i, j, "_", 5, 0)
+        //Drawing the trees
+        if(gridCode(grid, i, j, "_") == 0 && grid[i][j] != "W"){
+          let ti = 14
+          let tj = floor(random(3))
+          placeTile(i, j, ti, tj);
+        }
+      }
+      //Drawing the towers
+      if(gridCode(grid, i, j, "_") == 15 && random() > 0.99){
+        placeTile(i, j, 28, 1);
+        placeTile(i - 1, j, 28, 0);
       }
     }
   }
