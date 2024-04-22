@@ -99,7 +99,47 @@ function stringToGrid(str) {
   return grid;
 }
 
-function setup() {
+var myp5 = new((d) => {
+  d.setup = () => {
+  numCols = select("#asciiBox").attribute("rows") | 0;
+  numRows = select("#asciiBox").attribute("cols") | 0;
+
+  d.createCanvas(16 * numCols, 16 * numRows).parent("canvas-container");
+  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+
+  select("#reseedButton").mousePressed(reseed);
+  select("#asciiBox").input(reparseGrid);
+
+  reseed();
+  };
+
+  d.draw = () => {
+    randomSeed(seed);
+  drawGrid(currentGrid);
+  }
+});
+
+var myp5 = new((o) => {
+  o.setup = () => {
+  numCols2 = select("#asciiBox2").attribute("rows") | 0;
+  numRows2 = select("#asciiBox2").attribute("cols") | 0;
+
+  o.createCanvas(16 * numCols2, 16 * numRows2).parent("canvas-container2");
+  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+
+  select("#reseedButton2").mousePressed(reseed2);
+  select("#asciiBox2").input(reparseGrid2);
+
+  reseed2();
+  };
+
+  o.draw = () => {
+    randomSeed(seed2);
+    drawGrid2(currentGrid2);
+  }
+});
+
+/*function setup() {
   numCols = select("#asciiBox").attribute("rows") | 0;
   numRows = select("#asciiBox").attribute("cols") | 0;
 
@@ -125,12 +165,9 @@ function setup() {
 
 
 function draw() {
-  randomSeed(seed);
-  drawGrid(currentGrid);
-
   randomSeed(seed2);
   drawWorldGrid(currentGrid2);
-}
+}*/
 
 function placeTile(i, j, ti, tj) {
   image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
