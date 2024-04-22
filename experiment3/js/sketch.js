@@ -20,13 +20,6 @@ function preload() {
 }
 
 //Overworld generator
-function reseed2() {
-  seed2 = (seed2 | 0) + 1109;
-  randomSeed(seed2);
-  noiseSeed(seed2);
-  select("#seedReport2").html("seed " + seed2);
-  regenerateGrid2();
-}
 
 function regenerateGrid2() {
   select("#asciiBox2").value(gridToString2(generateWorldGrid(numCols2, numRows2)));
@@ -60,13 +53,6 @@ function stringToGrid2(str) {
 }
 
 //Dungeon generator
-function reseed() {
-  seed = (seed | 0) + 1109;
-  randomSeed(seed);
-  noiseSeed(seed);
-  select("#seedReport").html("seed " + seed);
-  regenerateGrid();
-}
 
 function regenerateGrid() {
   select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
@@ -100,6 +86,14 @@ function stringToGrid(str) {
 }
 
 var myp5 = new p5((d) => {
+  function reseed() {
+    seed = (seed | 0) + 1109;
+    d.randomSeed(seed);
+    d.noiseSeed(seed);
+    d.select("#seedReport").html("seed " + seed);
+    regenerateGrid();
+  }
+
   d.setup = () => {
   numCols = d.select("#asciiBox").attribute("rows") | 0;
   numRows = d.select("#asciiBox").attribute("cols") | 0;
@@ -120,6 +114,14 @@ var myp5 = new p5((d) => {
 }, 'p5sketch');
 
 var myp5 = new p5((o) => {
+  function reseed2() {
+    seed2 = (seed2 | 0) + 1109;
+    o.randomSeed(seed2);
+    o.noiseSeed(seed2);
+    o.select("#seedReport2").html("seed " + seed2);
+    regenerateGrid2();
+  }
+
   o.setup = () => {
   numCols2 = o.select("#asciiBox2").attribute("rows") | 0;
   numRows2 = o.select("#asciiBox2").attribute("cols") | 0;
