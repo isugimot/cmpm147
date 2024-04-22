@@ -21,69 +21,7 @@ function preload() {
 
 //Overworld generator
 
-function regenerateGrid2() {
-  select("#asciiBox2").value(gridToString2(generateWorldGrid(numCols2, numRows2)));
-  reparseGrid2();
-}
-
-function reparseGrid2() {
-  currentGrid2 = stringToGrid2(select("#asciiBox2").value());
-}
-
-function gridToString2(grid) {
-  let rows2 = [];
-  for (let i = 0; i < grid.length; i++) {
-    rows2.push(grid[i].join(""));
-  }
-  return rows2.join("\n");
-}
-
-function stringToGrid2(str) {
-  let grid2 = [];
-  let lines2 = str.split("\n");
-  for (let i = 0; i < lines2.length; i++) {
-    let row2 = [];
-    let chars2 = lines2[i].split("");
-    for (let j = 0; j < chars2.length; j++) {
-      row2.push(chars2[j]);
-    }
-    grid2.push(row2);
-  }
-  return grid2;
-}
-
 //Dungeon generator
-
-function regenerateGrid() {
-  select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
-  reparseGrid();
-}
-
-function reparseGrid() {
-  currentGrid = stringToGrid(select("#asciiBox").value());
-}
-
-function gridToString(grid) {
-  let rows = [];
-  for (let i = 0; i < grid.length; i++) {
-    rows.push(grid[i].join(""));
-  }
-  return rows.join("\n");
-}
-
-function stringToGrid(str) {
-  let grid = [];
-  let lines = str.split("\n");
-  for (let i = 0; i < lines.length; i++) {
-    let row = [];
-    let chars = lines[i].split("");
-    for (let j = 0; j < chars.length; j++) {
-      row.push(chars[j]);
-    }
-    grid.push(row);
-  }
-  return grid;
-}
 
 var myp5 = new p5((d) => {
   function reseed() {
@@ -92,6 +30,37 @@ var myp5 = new p5((d) => {
     d.noiseSeed(seed);
     d.select("#seedReport").html("seed " + seed);
     regenerateGrid();
+  }
+
+  function regenerateGrid() {
+    d.select("#asciiBox").value(gridToString(generateGrid(numCols, numRows)));
+    reparseGrid();
+  }
+  
+  function reparseGrid() {
+    currentGrid = stringToGrid(select("#asciiBox").value());
+  }
+  
+  function gridToString(grid) {
+    let rows = [];
+    for (let i = 0; i < grid.length; i++) {
+      rows.push(grid[i].join(""));
+    }
+    return rows.join("\n");
+  }
+  
+  function stringToGrid(str) {
+    let grid = [];
+    let lines = str.split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      let row = [];
+      let chars = lines[i].split("");
+      for (let j = 0; j < chars.length; j++) {
+        row.push(chars[j]);
+      }
+      grid.push(row);
+    }
+    return grid;
   }
 
   d.setup = () => {
@@ -120,6 +89,37 @@ var myp5 = new p5((o) => {
     o.noiseSeed(seed2);
     o.select("#seedReport2").html("seed " + seed2);
     regenerateGrid2();
+  }
+
+  function regenerateGrid2() {
+    o.select("#asciiBox2").value(gridToString2(generateWorldGrid(numCols2, numRows2)));
+    reparseGrid2();
+  }
+  
+  function reparseGrid2() {
+    currentGrid2 = stringToGrid2(select("#asciiBox2").value());
+  }
+  
+  function gridToString2(grid) {
+    let rows2 = [];
+    for (let i = 0; i < grid.length; i++) {
+      rows2.push(grid[i].join(""));
+    }
+    return rows2.join("\n");
+  }
+  
+  function stringToGrid2(str) {
+    let grid2 = [];
+    let lines2 = str.split("\n");
+    for (let i = 0; i < lines2.length; i++) {
+      let row2 = [];
+      let chars2 = lines2[i].split("");
+      for (let j = 0; j < chars2.length; j++) {
+        row2.push(chars2[j]);
+      }
+      grid2.push(row2);
+    }
+    return grid2;
   }
 
   o.setup = () => {
