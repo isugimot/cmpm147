@@ -99,7 +99,7 @@ function stringToGrid(str) {
   return grid;
 }
 
-var myp5 = new((d) => {
+var myp5 = new p5((d) => {
   d.setup = () => {
   numCols = select("#asciiBox").attribute("rows") | 0;
   numRows = select("#asciiBox").attribute("cols") | 0;
@@ -119,7 +119,7 @@ var myp5 = new((d) => {
   }
 }, 'p5sketch');
 
-var myp5 = new((o) => {
+var myp5 = new p5((o) => {
   o.setup = () => {
   numCols2 = select("#asciiBox2").attribute("rows") | 0;
   numRows2 = select("#asciiBox2").attribute("cols") | 0;
