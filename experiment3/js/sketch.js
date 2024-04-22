@@ -8,6 +8,7 @@
 let seed = 0;
 let seed2 = 0;
 let tilesetImage;
+let tilesetImage2;
 let currentGrid = [];
 let currentGrid2 = [];
 let numRows, numCols;
@@ -277,13 +278,13 @@ var myp5 = new p5((d) => {
 //Overworld generator
 var myp5 = new p5((o) => {
   o.preload = () => {
-    tilesetImage = o.loadImage(
+    tilesetImage2 = o.loadImage(
       "tilesetP8.png"
     );
   }
 
   function placeTile(i, j, ti, tj) {
-    image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
+    image(tilesetImage2, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
   }
 
   function reseed2() {
