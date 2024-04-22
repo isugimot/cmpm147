@@ -59,11 +59,6 @@ function stringToGrid2(str) {
   return grid2;
 }
 
-function draw2() {
-  randomSeed(seed2);
-  drawWorldGrid(currentGrid2);
-}
-
 //Dungeon generator
 function reseed() {
   seed = (seed | 0) + 1109;
@@ -132,6 +127,9 @@ function setup() {
 function draw() {
   randomSeed(seed);
   drawGrid(currentGrid);
+
+  randomSeed(seed2);
+  drawWorldGrid(currentGrid2);
 }
 
 function placeTile(i, j, ti, tj) {
