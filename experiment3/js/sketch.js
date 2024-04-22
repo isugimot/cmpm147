@@ -19,13 +19,13 @@ function preload() {
   );
 }
 
-function placeTile(i, j, ti, tj) {
-  image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
-}
-
 //Dungeon generator
 
 var myp5 = new p5((d) => {
+  function placeTile(i, j, ti, tj) {
+    d.image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
+  }
+
   function reseed() {
     seed = (seed | 0) + 1109;
     d.randomSeed(seed);
@@ -274,6 +274,10 @@ var myp5 = new p5((d) => {
 
 //Overworld generator
 var myp5 = new p5((o) => {
+  function placeTile(i, j, ti, tj) {
+    o.image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
+  }
+
   function reseed2() {
     seed2 = (seed2 | 0) + 1109;
     o.randomSeed(seed2);
