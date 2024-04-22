@@ -20,7 +20,7 @@ function preload() {
 }
 
 function placeTile(i, j, ti, tj) {
-  IMAGE(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
+  image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
 }
 
 //Dungeon generator
