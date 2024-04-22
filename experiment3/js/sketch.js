@@ -13,16 +13,17 @@ let currentGrid2 = [];
 let numRows, numCols;
 let numRows2, numCols2;
 
-function preload() {
-  tilesetImage = loadImage(
-    "tilesetP8.png"
-  );
-}
 
 
 //Dungeon generator
 
 var myp5 = new p5((d) => {
+  d.preload = () => {
+    tilesetImage = loadImage(
+      "tilesetP8.png"
+    );
+  }
+
   function placeTile(i, j, ti, tj) {
     image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
   }
@@ -275,6 +276,12 @@ var myp5 = new p5((d) => {
 
 //Overworld generator
 var myp5 = new p5((o) => {
+  o.preload = () => {
+    tilesetImage = loadImage(
+      "tilesetP8.png"
+    );
+  }
+
   function placeTile(i, j, ti, tj) {
     image(tilesetImage, 16 * j, 16 * i, 16, 16, 8 * ti, 8 * tj, 8, 8);
   }
