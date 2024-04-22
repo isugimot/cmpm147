@@ -101,34 +101,34 @@ function stringToGrid(str) {
 
 var myp5 = new p5((d) => {
   d.setup = () => {
-  numCols = select("#asciiBox").attribute("rows") | 0;
-  numRows = select("#asciiBox").attribute("cols") | 0;
+  numCols = d.select("#asciiBox").attribute("rows") | 0;
+  numRows = d.select("#asciiBox").attribute("cols") | 0;
 
   d.createCanvas(16 * numCols, 16 * numRows).parent("canvas-container");
-  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+  d.select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
 
-  select("#reseedButton").mousePressed(reseed);
-  select("#asciiBox").input(reparseGrid);
+  d.select("#reseedButton").mousePressed(reseed);
+  d.select("#asciiBox").input(reparseGrid);
 
   reseed();
   };
 
   d.draw = () => {
     randomSeed(seed);
-  drawGrid(currentGrid);
+    drawGrid(currentGrid);
   }
 }, 'p5sketch');
 
 var myp5 = new p5((o) => {
   o.setup = () => {
-  numCols2 = select("#asciiBox2").attribute("rows") | 0;
-  numRows2 = select("#asciiBox2").attribute("cols") | 0;
+  numCols2 = o.select("#asciiBox2").attribute("rows") | 0;
+  numRows2 = o.select("#asciiBox2").attribute("cols") | 0;
 
   o.createCanvas(16 * numCols2, 16 * numRows2).parent("canvas-container2");
-  select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+  o.select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
 
-  select("#reseedButton2").mousePressed(reseed2);
-  select("#asciiBox2").input(reparseGrid2);
+  o.select("#reseedButton2").mousePressed(reseed2);
+  o.select("#asciiBox2").input(reparseGrid2);
 
   reseed2();
   };
