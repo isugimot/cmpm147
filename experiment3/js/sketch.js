@@ -40,7 +40,7 @@ var myp5 = new p5((d) => {
   }
   
   function reparseGrid() {
-    currentGrid = stringToGrid(select("#asciiBox").value());
+    currentGrid = stringToGrid(d.select("#asciiBox").value());
   }
   
   function gridToString(grid) {
@@ -93,9 +93,9 @@ var myp5 = new p5((d) => {
       smaller = numCols;
     }
     //The size and number of rooms
-    let maxSize = d.floor(random(smaller/5, smaller/4));
-    let minSize = d.floor(random(smaller/10, maxSize));
-    let numRooms = d.floor(random(5, 10));
+    let maxSize = d.floor(d.random(smaller/5, smaller/4));
+    let minSize = d.floor(d.random(smaller/10, maxSize));
+    let numRooms = d.floor(d.random(5, 10));
     //The grid with the background areas
     let grid = [];
     for (let i = 0; i < numRows; i++) {
@@ -113,10 +113,10 @@ var myp5 = new p5((d) => {
     //This randomly locates and create rooms depending on the min and max size.
     let rooms = [];
     for (let i = 0; i < numRooms; i++){
-      const roomRows = d.floor(random() * (maxSize - minSize)) + minSize;
-      const roomCols = d.floor(random() * (maxSize - minSize)) + minSize;
-      const x = d.floor(random() * numCols - roomCols) + 1;
-      const y = d.floor(random() * numRows - roomRows) + 1;
+      const roomRows = d.floor(d.random() * (maxSize - minSize)) + minSize;
+      const roomCols = d.floor(d.random() * (maxSize - minSize)) + minSize;
+      const x = d.floor(d.random() * numCols - roomCols) + 1;
+      const y = d.floor(d.random() * numRows - roomRows) + 1;
       const room = {x: x, y: y, width: roomCols, height: roomRows};
       //This checks if the room is overlapping. If it is, the room is rebuilt before it is pushed to the sets of rooms
       //to keep track the used spaces.
@@ -240,28 +240,28 @@ var myp5 = new p5((d) => {
       for(let j = 0; j < grid[i].length; j++) {
         //Drawing lavas with animations by millis()
         if (grid[i][j] == '_') {
-          let ti = d.floor(random(9, 11))
-          let tj = d.floor(random(18, 19))
+          let ti = d.floor(d.random(9, 11))
+          let tj = d.floor(d.random(18, 19))
           placeTile(i, j, ti, tj);
           placeTile(i, j, 9 + (millis()%3000 < 250 ? -1 : -2), 18 + (millis()%700 < 250 ? 1 : 2));
         }
         else if (grid[i][j] == '-') {
-          let ti = (d.floor(random(1, 3)))
-          let tj = d.floor(random(18, 19))
+          let ti = (d.floor(d.random(1, 3)))
+          let tj = d.floor(d.random(18, 19))
           placeTile(i, j, ti, tj);
           placeTile(i, j, 5 + (millis()%1000 > 800 ? 1 : 0), 19 + (millis()%2000 < 250 ? -1 : 0));
         }
         //Drawing the dungeon
         if(gridCheck(grid, i, j, ".")){
-          placeTile(i, j, (d.floor(random(4))), 9);
+          placeTile(i, j, (d.floor(d.random(4))), 9);
           //Adding extra treasure boxes as well.
-          if(random() < 0.01){
+          if(d.random() < 0.01){
             placeTile(i, j, 2, 30);
           }
         } else {
           //Drawing the edges and also adding in some extra terrains in the lava.
           drawContext(grid, i, j, ".", 0, 9);
-          if(gridCode(grid, i, j, ".") == 0 && random() > 0.99){
+          if(gridCode(grid, i, j, ".") == 0 && d.random() > 0.99){
             placeTile(i, j, 14, 9);
           }
         }
@@ -288,7 +288,7 @@ var myp5 = new p5((o) => {
   }
   
   function reparseGrid2() {
-    currentGrid2 = stringToGrid2(select("#asciiBox2").value());
+    currentGrid2 = stringToGrid2(o.select("#asciiBox2").value());
   }
   
   function gridToString2(grid) {
@@ -337,10 +337,10 @@ var myp5 = new p5((o) => {
     for (let i = 0; i < numRows; i++) {
       let row = [];
       for (let j = 0; j < numCols; j++) {
-        if(noise(i/10, j/10) > 0.5){
+        if(o.noise(i/10, j/10) > 0.5){
           row.push("-");
         }
-        else if(noise(i/10, j/10) < 0.3){
+        else if(o.noise(i/10, j/10) < 0.3){
           row.push("W");
         }
         else{
@@ -429,7 +429,7 @@ var myp5 = new p5((o) => {
   
   //Drawing grids.
   function drawWorldGrid(grid) {
-    background(128);
+    o.background(128);
     for(let i = 0; i < grid.length; i++) {
       for(let j = 0; j < grid[i].length; j++) {
         //Drawing the water, andl also animating it using % operators and millis().
@@ -440,7 +440,7 @@ var myp5 = new p5((o) => {
         }
         //Drawing the low lands
         if(grid[i][j] == '-'){
-          placeTile(i, j, floor(random(0, 4)), 1);
+          placeTile(i, j, o.floor(o.random(0, 4)), 1);
         }
         else{
           drawContext(grid, i, j, "-", 0, 6);
@@ -449,11 +449,11 @@ var myp5 = new p5((o) => {
         //Also drawing the trees in the low lands
         //Drawing ground
         if (grid[i][j] == '_') {
-          let ti = floor(random(4))
+          let ti = o.floor(o.random(4))
           let tj = 0
           placeTile(i, j, ti, tj);
           //Drawing the houses
-          if(gridCode(grid, i, j, "_") == 15 && random() > 0.9){
+          if(gridCode(grid, i, j, "_") == 15 && o.random() > 0.9){
             placeTile(i, j, 26, 0);
           }
         }
@@ -463,12 +463,12 @@ var myp5 = new p5((o) => {
           //Drawing the trees
           if(gridCode(grid, i, j, "_") == 0 && grid[i][j] != "W"){
             let ti = 14
-            let tj = floor(random(3))
+            let tj = o.floor(o.random(3))
             placeTile(i, j, ti, tj);
           }
         }
         //Drawing the towers
-        if(gridCode(grid, i, j, "_") == 15 && random() > 0.99){
+        if(gridCode(grid, i, j, "_") == 15 && o.random() > 0.99){
           placeTile(i, j, 28, 1);
           placeTile(i - 1, j, 28, 0);
         }
