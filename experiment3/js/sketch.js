@@ -117,7 +117,7 @@ var myp5 = new((d) => {
     randomSeed(seed);
   drawGrid(currentGrid);
   }
-});
+}, 'p5sketch');
 
 var myp5 = new((o) => {
   o.setup = () => {
@@ -137,7 +137,7 @@ var myp5 = new((o) => {
     randomSeed(seed2);
     drawGrid2(currentGrid2);
   }
-});
+}, 'p5sketch');
 
 /*function setup() {
   numCols = select("#asciiBox").attribute("rows") | 0;
