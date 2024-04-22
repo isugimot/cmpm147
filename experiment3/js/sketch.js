@@ -19,7 +19,7 @@ let numRows2, numCols2;
 
 var myp5 = new p5((d) => {
   d.preload = () => {
-    tilesetImage = loadImage(
+    tilesetImage = d.loadImage(
       "tilesetP8.png"
     );
   }
@@ -277,7 +277,7 @@ var myp5 = new p5((d) => {
 //Overworld generator
 var myp5 = new p5((o) => {
   o.preload = () => {
-    tilesetImage = loadImage(
+    tilesetImage = o.loadImage(
       "tilesetP8.png"
     );
   }
