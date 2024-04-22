@@ -114,7 +114,7 @@ var myp5 = new p5((d) => {
   };
 
   d.draw = () => {
-    randomSeed(seed);
+    d.randomSeed(seed);
     drawGrid(currentGrid);
   }
 }, 'p5sketch');
@@ -134,7 +134,7 @@ var myp5 = new p5((o) => {
   };
 
   o.draw = () => {
-    randomSeed(seed2);
+    o.randomSeed(seed2);
     drawGrid2(currentGrid2);
   }
 }, 'p5sketch');
