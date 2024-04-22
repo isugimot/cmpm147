@@ -269,7 +269,7 @@ let myp5 =  new((sketch) => {
     }
   }
 
-}, "#minor-section");
+}, document.getElementById('minor-section'));
 
 /*function reseed() {
   seed = (seed | 0) + 1109;
