@@ -235,7 +235,7 @@ var myp5 = new p5((d) => {
   
   //Drawing grids.
   function drawGrid(grid) {
-    background(128);
+    d.background(128);
     for(let i = 0; i < grid.length; i++) {
       for(let j = 0; j < grid[i].length; j++) {
         //Drawing lavas with animations by millis()
@@ -328,7 +328,7 @@ var myp5 = new p5((o) => {
 
   o.draw = () => {
     o.randomSeed(seed2);
-    drawGrid2(currentGrid2);
+    drawWorldGrid(currentGrid2);
   }
 
   function generateWorldGrid(numCols, numRows) {
