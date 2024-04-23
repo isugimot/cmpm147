@@ -239,6 +239,12 @@ var myp5 = new p5((d) => {
   //Drawing grids.
   function drawGrid(grid) {
     d.background(128);
+    let entry = false;
+    let entryx;
+    let entryy;
+    let exitx;
+    let exity;
+    let exitdist = 0;
     for(let i = 0; i < grid.length; i++) {
       for(let j = 0; j < grid[i].length; j++) {
         //Drawing lavas with animations by millis()
@@ -246,20 +252,39 @@ var myp5 = new p5((d) => {
           let ti = d.floor(d.random(9, 11))
           let tj = d.floor(d.random(18, 19))
           placeTile(i, j, ti, tj);
-          placeTile(i, j, 9 + (d.millis()%3000 < 250 ? -1 : -2), 18 + (d.millis()%700 < 250 ? 1 : 2));
+          placeTile(i, j, 9 + (d.millis()%((i+1)*(j+1)%7 * 1000) < (i*j%5 * 25) ? -1 : -2), 18 + (d.millis()%((i+1)*(j+1)%19 * 700) < (i*j%5 + 250) ? 1 : 2));
         }
         else if (grid[i][j] == '-') {
           let ti = (d.floor(d.random(1, 3)))
           let tj = d.floor(d.random(18, 19))
           placeTile(i, j, ti, tj);
-          placeTile(i, j, 5 + (d.millis()%1000 > 800 ? 1 : 0), 19 + (d.millis()%2000 < 250 ? -1 : 0));
+          placeTile(i, j, 5 + (d.millis()%((i+1)*(j+1)%11 * 1000) > (i*j%5 * 50 + 400) ? 1 : 0), 19 + (d.millis()%((i+1)*(j+1)%13 * 1000) < (i*j%5 + 250) ? -1 : 0));
         }
         //Drawing the dungeon
         if(gridCheck(grid, i, j, ".")){
           placeTile(i, j, (d.floor(d.random(4))), 9);
           //Adding extra treasure boxes as well.
-          if(d.random() < 0.01){
+          if(gridCode(grid, i, j, ".") == 15 && d.random() < 0.05){
             placeTile(i, j, 2, 30);
+          }
+          //Taking the farthest coordinate from the entance door where a door can be located.
+          if(gridCode(grid, i, j, ".") == 15 && gridCheck(grid, i-1, j-1, ".") && gridCheck(grid, i-1, j+1, ".") && 
+             gridCheck(grid, i+1, j-1, ".") && gridCheck(grid, i + 1, j + 1, ".") &&
+             entry == true){
+            if(exitdist < Math.sqrt(Math.pow(entryx - j, 2) + Math.pow(entryy - i, 2))){
+              exitdist = Math.sqrt(Math.pow(entryx - j, 2) + Math.pow(entryy - i, 2));
+              exitx = j;
+              exity = i
+            }
+          }
+          //Adding in entrance door once.
+          if(gridCode(grid, i, j, ".") == 15 && gridCheck(grid, i-1, j-1, ".") && gridCheck(grid, i-1, j+1, ".") && 
+             gridCheck(grid, i+1, j-1, ".") && gridCheck(grid, i + 1, j + 1, ".") &&
+             entry == false){
+            placeTile(i, j, 26, 26);
+            entry = true
+            entryx = j;
+            entryy = i;
           }
         } else {
           //Drawing the edges and also adding in some extra terrains in the lava.
@@ -270,6 +295,8 @@ var myp5 = new p5((d) => {
         }
       }
     }
+    //Placing the exit door to a location far as possible from the entrance.
+    placeTile(exity, exitx, 27, 26);
   }
 
 }, 'p5sketch');
