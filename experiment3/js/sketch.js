@@ -72,8 +72,8 @@ var myp5 = new p5((d) => {
   numCols = d.select("#asciiBox").attribute("rows") | 0;
   numRows = d.select("#asciiBox").attribute("cols") | 0;
 
-  d.createCanvas(16 * numCols, 16 * numRows).parent("canvas-container");
-  d.select("canvas").elt.getContext("2d").imageSmoothingEnabled = false;
+  d.createCanvas(16 * numCols, 16 * numRows).parent("canvas-container1");
+  d.select('canvas').elt.getContext("2d").imageSmoothingEnabled = false;
 
   d.select("#reseedButton").mousePressed(reseed);
   d.select("#asciiBox").input(reparseGrid);

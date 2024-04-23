@@ -1,3 +1,13 @@
+document, body {
+  padding: 0;
+  margin: 0;
+  background-color: lightblue;
+  font-family:'Times New Roman', Times, serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
 h1, h2 {
   margin: 0;
   padding: 0;
@@ -7,16 +17,18 @@ h1, h2 {
 
 #content {
   width: calc(100% - 30px);
-  margin: 10px;080;
+  margin: 10px #080;
   padding: 10px;
   border: solid 1px #808;
-  font-family: sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .minor-section {
   margin: 10px;
+  border: solid 1px blue;
+  border-radius: 10px;
+  background-color: lightsteelblue;
   padding: 10px;
-  border: solid 1px #A0A0A0;
   border-radius: 10px;
 }
 
@@ -54,4 +66,27 @@ body.is-fullscreen #canvas-container {
   height: 100vh !important;
   margin: 0; /* Remove any default margins */
   z-index: 1000; /* Ensure it's above other content */
+}
+
+.column{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.column>* {
+  min-width: 350px;
+}
+
+.column>*:nth-child(1) {
+  flex: 1;
+}
+
+.column>*:nth-child(2) {
+  flex: 1;
+}
+
+.column>*:nth-child(3) {
+  flex: 1;
 }
