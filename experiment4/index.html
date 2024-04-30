@@ -65,33 +65,22 @@
             <div class="column 1">
                 <div class="minor-section">
                     <h2>Description</h2>
-                    <p>This project is composed of two different world generators with autotiling logics, one generating dungeons with rooms and corridors and another generating the overworld with different biomes created with noise().</p>
+                    <p>This project is composed of three different infinite world generators with hash functions used for randomization of the world components, as well as some interactive items on screen.</p>
                 </div>
             </div>
 
             <div class="column2">
                 <div class="minor-section">
                     <h2>Technical</h2>
-                    <p>The code generates worlds based on the text editor located next to it, with each symbol representing different tiles and terrains. The user can edit the text editor to make their own world, as well as using the reseed button to randomly generate the worlds.</p>
-                    <p>The dungeon generator uses "_", "-", and ".", where "_" and "-" represents the two different types of lava in the background, and "." represents the floor of the dungeon.</p>
-                    <p>The overworld generator uses "_", "-" and "W", with "_" and "-" representing the two different types of land terrain, highlands and lowlands and "W" being the water.</p>
+                    <p>I based off the basic codes from the initial template for the first infinite world generator, and tried adding in outer space themes and smaller details into it. I added in some extra randomized objects like the background stars and the larger interactable stars, and also used the key input to randomize the exploding effect animation that I added into the larger interactable stars.</p>
+                    <p>The second infinite world generator was aimed to work on something different, so I implemented sound into the world generator, with the theme of glitch screens. There are multiple randomized objects, including the flickering tiles and the solid colored tiles, each of them having their colors related to their sound frequencies which are chosen randomly. I made it so that clicking on flickering tiles and blank tiles will change them into the solid colored tiles, which will fix the frequency of that tile, and will also play the sound for that tile. The key for this generator was used both for randomizing the tile layout, and was also used to change the frequency upper limit for the sound.</p>
+                    <p>The third generator used tilesets in an infinite world, and implemented character movement with direction. Clicking on tiles 1 tiles away from the character will make it move around, and the direction the character will be looking at will change depending on where it was clicked. There also are wolves located around the world, which are coded so that if the character steps over them on the same tile, the wolf will disappear. Both the wolf and the character are animated, with the wolf changing its direction once in a while as well. The key is used for tile and character layout and also for character selection, changing the character being controlled by the user for different words.</p>
                 </div>
             </div>
             <div class="column3">
                 <div class="minor-section">
                     <h2>Reflection</h2>
-                    <p>This project was done by myself, and I feel that this project was very successful, with the requirements being fulfilled.</p>
-                    <p>Requirements</p>
-                    <ul>
-                        <li>Prompt: I have two projects, one showing a overworld map with rounded biomes and the other showing a dungeon map with rectangular rooms.</li>
-                        <li>Grids: Different random seeds do lead to different grids of codes with visible changes.</li>
-                        <li>Autotiling: There are more than two distinct codes used in the grid, and appropriate transitions between the codes are rendered successfully.</li>
-                        <li>Editing: The audience is able to edit the text version of the grid to change the scene.</li>
-                        <li>Incidentals: The codes are rendered with some additional variation, with each tile having slight variations.</li>
-                        <li>Life: The world shows signs of life with animations based on time.</li>
-                        <li>Statement: This profile homepage offers a Description, Code, and Life. </li>
-                        <li>Tileset from <a href="https://thkaspar.itch.io/micro-tileset-overworld-dungeon" target="_new"> Micro Tileset - Overworld & Dungeon</a> by <a href="https://thkaspar.itch.io/" target="_new">thkaspar</a></li>
-                    </ul>
+                    <p>This project was somewhat challenging, but I managed to make it working by the due date.</p>
                 </div>
             </div>
         </section>
