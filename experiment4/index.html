@@ -2,7 +2,7 @@
 <html>
 <head>
     <!-- This title is used for tabs and bookmarks -->
-    <title>Experiment 3 - Alternate Worlds</title>
+    <title>Experiment 4 - Infinite Worlds</title>
 
 
     <!-- Use UTF character set, a good idea with any webpage -->
@@ -30,6 +30,7 @@
     <script src="./js/project.js" DEFER></script>
     <!-- Use me for a p5.js project -->
     <script src="./js/sketch.js" DEFER></script>
+    <script src="./js/xxhash.min.js" DEFER></script>
 </head>
 <body>
     <!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
@@ -37,34 +38,27 @@
         <section>
 
 
-            <h1>Experiment 3 - Alternate Worlds</h1>
+            <h1>Experiment 4 - Infinite Worlds</h1>
 
 
             <div class="minor-section">
-                <div id="p5sketch">
-                <button id="reseedButton">reseed</button>
-                <span id="seedReport"></span>
-                <hr />
-                <span id="canvas-container1">
-                    <!-- canvas will be added here -->
-				</span>
-                <textarea cols="20" rows="20" id="asciiBox" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
+                <div id = "p5sketch">
+                    <div id = "container1"></div>
+                </div>
+                <div id = "p5sketch2">
+                    <div id = "container2"></div>
+                </div>
+                <div id = "p5sketch3">
+                    <div id = "container3"></div>
+                </div>
 
-				<hr />
-				<button id="reseedButton2">reseed</button>
-                <span id="seedReport2"></span>
-                <hr />
-                <span id="canvas-container2">
-                    <!-- canvas will be added here -->
-				</span>
-                <textarea cols="20" rows="20" id="asciiBox2" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
-
-                <p>Translated from <a href="https://glitch.com/edit/#!/alternate-dungeon-generator" target="_new">alternate-dungeon-generator</a> and <a href="https://glitch.com/edit/#!/alternate-overworld-generator" target="_new">alternate-overworld-generator</a> on glitch.com</p>
+                <p>Translated from <a href="https://glitch.com/edit/#!/galaxy-infinite-worlds" target="_new">galaxy-infinite-worlds</a>,
+                     <a href="https://glitch.com/edit/#!/infinite-world-glitch-screen" target="_new">infinite-world-glitch-screen</a>, and
+                     <a href="https://glitch.com/edit/#!/infinite-world-walking-character" target="_new">infinite-world-walking-character</a> on glitch.com</p>
                 </div>
                 <div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
                 </div>
-            </div>
         </section>
 
         <section class="column">
