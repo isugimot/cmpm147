@@ -2,7 +2,7 @@
 <html>
 <head>
     <!-- This title is used for tabs and bookmarks -->
-    <title>Experiment 4 - Infinite Worlds</title>
+    <title>Experiment 5 - Evolutionary Impressions</title>
 
 
     <!-- Use UTF character set, a good idea with any webpage -->
@@ -30,7 +30,6 @@
     <script src="./js/project.js" DEFER></script>
     <!-- Use me for a p5.js project -->
     <script src="./js/sketch.js" DEFER></script>
-    <script src="./js/xxhash.min.js" DEFER></script>
 </head>
 <body>
     <!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
@@ -38,24 +37,32 @@
         <section>
 
 
-            <h1>Experiment 4 - Infinite Worlds</h1>
+            <h1>Experiment 5 - Evolutionary Impressions</h1>
 
 
             <div class="minor-section">
-                <div id = "p5sketch">
-                    <div id = "container1"></div>
+                <div id="container"></div>
+                    <select id="dropper"></select>
+                    <button id="restart">
+                        restart
+                    </button>
+                    <p>
+                      Mutation rate (<span id="rate"></span>%):<br /><input
+                        id="slider"
+                        type="range"
+                        min="1"
+                        max="100"
+                        value="100"
+                      />
+                    </p>
+                    <p id="active"></p>
+                    <p>Active score: <span id="activeScore"></span></p>
+                    <p>Exploration rate: <span id="fpsCounter"></span> fps</p>
+                    <p id="best"></p>
+                    <p>Best score: <span id="bestScore"></span></p>
+                    <p id="memory" data-max-items="16"></p>
                 </div>
-                <div id = "p5sketch2">
-                    <div id = "container2"></div>
-                </div>
-                <div id = "p5sketch3">
-                    <div id = "container3"></div>
-                </div>
-
-                <p>Translated from <a href="https://glitch.com/edit/#!/galaxy-infinite-worlds" target="_new">galaxy-infinite-worlds</a>,
-                     <a href="https://glitch.com/edit/#!/infinite-world-glitch-screen" target="_new">infinite-world-glitch-screen</a>, and
-                     <a href="https://glitch.com/edit/#!/infinite-world-walking-character" target="_new">infinite-world-walking-character</a> on glitch.com</p>
-                </div>
+                <p>Translated from <a href="https://glitch.com/edit/#!/two-type-evolutionary-impressions" target="_new">two-type-evolutionary-impressions</a> on glitch.com</p>
                 <div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
                 </div>
